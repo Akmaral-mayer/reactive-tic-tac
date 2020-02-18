@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/reactive-tic-tac/static/css/main.6e9e47dc.chunk.css",
+    "main.js": "/reactive-tic-tac/static/js/main.7680b309.chunk.js",
+    "main.js.map": "/reactive-tic-tac/static/js/main.7680b309.chunk.js.map",
+    "runtime-main.js": "/reactive-tic-tac/static/js/runtime-main.10bc9c25.js",
+    "runtime-main.js.map": "/reactive-tic-tac/static/js/runtime-main.10bc9c25.js.map",
+    "static/js/2.55099bc3.chunk.js": "/reactive-tic-tac/static/js/2.55099bc3.chunk.js",
+    "static/js/2.55099bc3.chunk.js.map": "/reactive-tic-tac/static/js/2.55099bc3.chunk.js.map",
+    "index.html": "/reactive-tic-tac/index.html",
+    "precache-manifest.1aa9a0c18652cb4e254384d22989f94d.js": "/reactive-tic-tac/precache-manifest.1aa9a0c18652cb4e254384d22989f94d.js",
+    "service-worker.js": "/reactive-tic-tac/service-worker.js",
+    "static/css/main.6e9e47dc.chunk.css.map": "/reactive-tic-tac/static/css/main.6e9e47dc.chunk.css.map",
+    "static/js/2.55099bc3.chunk.js.LICENSE.txt": "/reactive-tic-tac/static/js/2.55099bc3.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/reactive-tic-tac/static/media/logo.5d5d9eef.svg",
+    "static/media/nolik.png": "/reactive-tic-tac/static/media/nolik.5bdf0343.png",
+    "static/media/simka.png": "/reactive-tic-tac/static/media/simka.22254c08.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.10bc9c25.js",
+    "static/js/2.55099bc3.chunk.js",
+    "static/css/main.6e9e47dc.chunk.css",
+    "static/js/main.7680b309.chunk.js"
+  ]
+}
