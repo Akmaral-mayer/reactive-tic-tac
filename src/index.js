@@ -1,12 +1,159 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Simka from './Simka';
+import Nolik from './Nolik';
+import simkaImg from './images/simka.png';
+import nolikImg from './images/nolik.png';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function Square({ value, onClick }) {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+    return (
+        <button className="square" onClick={onClick}>
+            {value}
+        </button>
+    );
+}
+
+ReactDOM.render(<Square />, document.getElementById('root'));
 serviceWorker.unregister();
+
+function Restart({ onClick }) {
+
+    return (
+        <button className="restart" onClick={onClick}>
+            Play again
+      </button>
+    );
+}
+
+function Game() {
+    const [squares, setSquares] = useState(Array(9).fill(null));
+    const [isXNext, setIsXNext] = useState(false);
+    const winner = calculateWinner(squares);
+
+    function renderSquare(i) {
+        return (
+            <Square
+                value={squares[i]}
+                onClick={() => {
+                    if (squares[i] != null || winner != null) {
+                        return;
+                    }
+                    const nextSquares = squares.slice();
+                    nextSquares[i] = (isXNext ? 'X' : 'O');
+                    setSquares(nextSquares);
+
+                    setIsXNext(!isXNext); // toggle turns
+                }}
+            />
+        );
+    }
+
+    function renderRestartButton() {
+        return (
+            <Restart
+                onClick={() => {
+                    setSquares(Array(9).fill(null));
+                    setIsXNext(true);
+                }}
+            />
+        );
+    }
+
+    function getStatus() {
+        if (winner) {
+            return "Winner: " + winner;
+        } else if (isBoardFull(squares)) {
+            return "Draw!";
+        } else {
+            return "Next player: " + (isXNext ? "X" : "O");
+        }
+    }
+
+
+    function simkaClicked() {
+        alert('The first player is Simka');
+        setIsXNext(true);
+    }
+
+    function nolikClicked() {
+        alert('The first player is Nolik');
+        setIsXNext(false);
+    }
+
+    return (
+        <div className="container">
+            <h2>Click one of the following cartoon to be first</h2>
+            <div id="lol" className="lol">
+                <img id="one"
+                    className="hero"
+                    alt="Simka"
+                    onClick={simkaClicked}
+                    src={simkaImg} />
+                <img
+                    id="two"
+                    className="hero"
+                    alt="Nolik"
+                    onClick={nolikClicked}
+                    src={nolikImg} />
+            </div>
+            <div className="game">
+                <div className="game-board">
+                    <div className="board-row">
+                        {renderSquare(0)}
+                        {renderSquare(1)}
+                        {renderSquare(2)}
+                    </div>
+                    <div className="board-row">
+                        {renderSquare(3)}
+                        {renderSquare(4)}
+                        {renderSquare(5)}
+                    </div>
+                    <div className="board-row">
+                        {renderSquare(6)}
+                        {renderSquare(7)}
+                        {renderSquare(8)}
+                    </div>
+                </div>
+                <div className="game-info">{getStatus()}</div>
+                <div className="restart-button">{renderRestartButton()}</div>
+            </div>
+        </div>
+    );
+}
+
+ReactDOM.render(<Game />, document.getElementById("root"));
+
+function calculateWinner(squares) {
+    const possibleLines = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+    // go over all possibly winning lines and check if they consist of only X's/only O's
+    for (let i = 0; i < possibleLines.length; i++) {
+        const [a, b, c] = possibleLines[i];
+        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+            return squares[a];
+        }
+    }
+    return null;
+}
+
+
+function isBoardFull(squares) {
+    for (let i = 0; i < squares.length; i++) {
+        if (squares[i] == null) {
+            return false;
+        }
+    }
+    return true;
+}
